@@ -225,7 +225,7 @@ function BOOK_UNTIL_TATKAL_OPENS(div, TRAIN_COACH, TRAVEL_DATE, TRAIN_NO, TATKAL
         // wait for exact time
         cy.task("log", "Waiting for the exact time of opening of TATKAL...")
         const exactTimeToOpen = tatkalOpenTimeForToday(TRAIN_COACH)
-        cy.get('div.h_head1', { timeout: 300000 }).should('include.text', exactTimeToOpen)
+        cy.get('div.h_head1', { timeout: 900000 }).should('include.text', exactTimeToOpen)
 
 
     }
@@ -249,7 +249,6 @@ function BOOK_UNTIL_TATKAL_OPENS(div, TRAIN_COACH, TRAVEL_DATE, TRAIN_NO, TATKAL
 
                         // confirming we click on same train no and seat class div
                         if (div[0].innerText.includes(TRAIN_NO) && div[0].innerText.includes(TRAIN_COACH)) {
-
                             cy.wrap(div).contains(TRAIN_COACH).click()
                             cy.get(`:nth-child(${index + 2}) > .bull-back > app-train-avl-enq > :nth-child(1) > :nth-child(7) > :nth-child(1)`).contains(formatDate(TRAVEL_DATE)).click()
                             cy.get(`:nth-child(${index + 2}) > .bull-back > app-train-avl-enq > [style="padding-top: 10px; padding-bottom: 20px;"]`).contains('Book Now').click()
